@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@material-ui/core";
 
 function FormularioCadastro() {
+  const [nome, setNome] = useState("");
+  const [sobreNome, setSobreNome] = useState("");
+  const [cpf, setCpf] = useState("");
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        console.log(nome, sobreNome, cpf);
+      }}
+    >
       <TextField
+        value={nome}
+        onChange={(event) => {
+          setNome(event.target.value);
+        }}
         id="nome"
         label="Nome"
         variant="outlined"
@@ -12,6 +24,10 @@ function FormularioCadastro() {
         margin="dense"
       />
       <TextField
+        value={sobreNome}
+        onChange={(event) => {
+          setSobreNome(event.target.value);
+        }}
         id="sobrenome"
         label="Sobrenome"
         variant="outlined"
@@ -19,6 +35,10 @@ function FormularioCadastro() {
         margin="dense"
       />
       <TextField
+        value={cpf}
+        onChange={(event) => {
+          setCpf(event.target.value);
+        }}
         id="cpf"
         label="cpf"
         variant="outlined"
@@ -27,28 +47,16 @@ function FormularioCadastro() {
       />
 
       <FormControlLabel
-        control={
-          <Switch
-            defaultChecked
-            name="Promoções"
-            color="primary"
-          />
-        }
+        control={<Switch defaultChecked name="Promoções" color="primary" />}
         label="Promoções"
       />
 
       <FormControlLabel
-        control={
-          <Switch
-            defaultChecked
-            name="Novidades"
-            color="primary"
-          />
-        }
+        control={<Switch defaultChecked name="Novidades" color="primary" />}
         label="Novidades"
       />
 
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" type="submit">
         Cadastrar
       </Button>
     </form>
